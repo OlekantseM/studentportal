@@ -1,0 +1,43 @@
+﻿@model StudentPortal.ViewModels.RegisterStudentViewModel
+
+<h2>Register as a Student</h2>
+
+<form asp-action="Register" method="post">
+    <div class="form-group">
+        <label asp-for="Student.FullName"></label>
+        <input asp-for="Student.FullName" class="form-control" />
+        <span asp-validation-for="Student.FullName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Student.Email"></label>
+        <input asp-for="Student.Email" class="form-control" />
+        <span asp-validation-for="Student.Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Student.PasswordHash">Password</label>
+        <input asp-for="Student.PasswordHash" type="password" class="form-control" />
+        <span asp-validation-for="Student.PasswordHash" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Student.CourseID">Select Course</label>
+        <select asp-for="Student.CourseID" class="form-control">
+            <option value="">-- Select Course --</option>
+            @foreach (var course in Model.Courses)
+            {
+                <option value="@course.CourseID">@course.CourseName</option>
+            }
+        </select>
+        <span asp-validation-for="Student.CourseID" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Register</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,27 @@
+﻿@model List<StudentPortal.Models.Student>
+
+<h2 class="students-title">Students</h2>
+
+<table class="students-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Course</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.FullName</td>
+                <td>@(student.Course?.CourseName ?? "No course assigned")</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/Admin/AddGrade?studentId=@student.StudentID">Add Grade</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<!-- Link to custom CSS file -->
+<link rel="stylesheet" href="~/css/students.css" />

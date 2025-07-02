@@ -1,0 +1,25 @@
+﻿@model StudentPortal.Models.Grade
+
+@{
+    ViewData["Title"] = "Delete Grade";
+}
+
+<h2>🗑️ Confirm Delete</h2>
+
+<div class="alert alert-warning">
+    <strong>Are you sure you want to delete this grade?</strong>
+</div>
+
+<div class="mb-3">
+    <p><strong>Student:</strong> @Model.Student?.FullName</p>
+    <p><strong>Subject:</strong> @Model.Assessment?.Subject?.SubjectName</p>
+    <p><strong>Term:</strong> @Model.Assessment?.Term?.Name</p>
+    <p><strong>Assessment:</strong> @Model.Assessment?.Name</p>
+    <p><strong>Score:</strong> @(Model.Score?.ToString("0.##") ?? "-")</p>
+    <p><strong>Comment:</strong> @(Model.Comment ?? "-")</p>
+</div>
+
+<form asp-action="DeleteGrade" asp-route-id="@Model.GradeID" method="post">
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a asp-action="AddGrade" asp-route-studentId="@Model.StudentID" class="btn btn-secondary">Cancel</a>
+</form>

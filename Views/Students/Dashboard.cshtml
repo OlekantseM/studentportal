@@ -1,0 +1,94 @@
+﻿@model StudentPortal.Models.Student
+
+<div class="dashboard-tabs">
+    <!-- TAB NAVIGATION -->
+    <nav class="tab-nav">
+        <button class="tab-button active" data-tab="profile">Profile</button>
+        <button class="tab-button" data-tab="grades">Grades</button>
+        <button class="tab-button" data-tab="notifications">Notifications</button>
+    </nav>
+
+    <!-- TAB: Profile -->
+    <section id="profile" class="tab-content active">
+        <h2>Welcome, @Model?.FullName</h2>
+        <p>No profile information yet.</p>
+    </section>
+
+    <!-- TAB: Grades -->
+    <section id="grades" class="tab-content">
+        <h3>Your Subjects and Grades</h3>
+
+        @{
+            var terms = new[] { "Term 1", "Term 2" };
+            var subjects = Model?.StudentSubjects?.Select(ss => ss.Subject).Where(s => s != null).ToList() ?? new();
+
+            var assessmentNames = new[] { "Assessment 1", "Assessment 2", "Exam" };
+        }
+
+        @if (subjects.Any())
+        {
+            foreach (var term in terms)
+            {
+                <h4>@term</h4>
+
+                foreach (var subject in subjects)
+                {
+                    var subjectName = subject!.SubjectName;
+
+                    var grades = Model?.Grades?
+                    .Where(g => g.SubjectID == subject.SubjectID && g.Term == term && g.Assessment != null)
+                    .ToList() ?? new List<StudentPortal.Models.Grade>();
+
+                    var gradeDict = assessmentNames.ToDictionary(
+                    an => an,
+                    an => grades.FirstOrDefault(g => g.Assessment.Name == an)
+                    );
+
+                    decimal a1 = gradeDict["Assessment 1"]?.Score ?? 0;
+                    decimal a2 = gradeDict["Assessment 2"]?.Score ?? 0;
+                    decimal exam = gradeDict["Exam"]?.Score ?? 0;
+                    decimal finalMark = Math.Round((a1 * 0.2M) + (a2 * 0.2M) + (exam * 0.6M), 2);
+
+                    <h5>@subjectName</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                @foreach (var an in assessmentNames)
+                                {
+                                    <th>@an</th>
+                                }
+                                <th>Final Mark</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @foreach (var an in assessmentNames)
+                                {
+                                    var grade = gradeDict[an];
+                                    <td>@(grade?.Score?.ToString("0.##") ?? "-")</td>
+                                }
+                                <td>@(grades.Any() ? finalMark.ToString("0.##") : "-")</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+            }
+        }
+        else
+        {
+            <p>You are not linked to any subjects.</p>
+        }
+    </section>
+
+    <!-- TAB: Notifications -->
+    <section id="notifications" class="tab-content">
+        <h3>Notifications</h3>
+        <p>No notifications.</p>
+    </section>
+</div>
+
+<a asp-action="Logout" class="btn btn-danger mt-4">Logout</a>
+
+<!-- Link CSS and JS (to be added in next steps) -->
+<link rel="stylesheet" href="~/css/dashboard.css" />
+<script src="~/js/dashboard.js"></script>

@@ -1,0 +1,10 @@
+﻿@model IEnumerable<StudentPortal.Models.Course>
+
+<h2>Courses in Database</h2>
+
+<ul>
+    @foreach (var course in Model)
+    {
+        <li>@course.CourseName</li>
+    }
+</ul>
