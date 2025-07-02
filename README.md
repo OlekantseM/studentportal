@@ -1,7 +1,7 @@
 # Student Portal 🚀
 
 A web-based student management system built with ASP.NET Core.  
-Allows students register for a course, to log in and view their grades, and admins to manage student grades.
+Allows students to register for a course, to log in and view their grades, and admins to manage student grades.
 
 ## Features
 - Student login and dashboard
