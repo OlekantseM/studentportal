@@ -1,32 +1,32 @@
-# Student Portal 🚀
+# Student Portal
 
 A web-based student management system built with ASP.NET Core.  
 Allows students to register for a course, log in and view their grades, and administrators to manage student grades.
 
-## Features
+## Features(So far)
 - Student login and dashboard
 - Admin login and grade management
 - Dynamic subject and term-based grading
 
 ## Tech Stack
 Backend:
-- ASP.NET Core MVC — for building the web application with MVC architecture.
-- C# — primary programming language.
+- ASP.NET Core MVC 
+- C# 
 - Entity Framework Core
-- SQL Server — relational database system (configured via connection string).
+- SQL Server 
 
 Frontend:
-- Razor Views — server-side rendering with Razor syntax in .cshtml files.
-- Bootstrap 5 — CSS framework for responsive styling and layout.
-- HTML & CSS — custom styles in separate CSS files.
-- JavaScript — added for UI interactivity, tabs switching, etc.
+- Razor Views 
+- Bootstrap 5 
+- HTML & CSS — 
+- JavaScript — 
 
 Session Management:
-- ASP.NET Core Session Middleware — to manage user login states (students & admin).
+- ASP.NET Core Session Middleware — 
 
 Version Control:
-- Git — local repository and version control.
-- GitHub — remote repository hosting and sharing your code.
+- Git 
+- GitHub 
 
 Development Environment:
 - Visual Studio 
