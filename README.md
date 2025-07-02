@@ -18,11 +18,11 @@ Backend:
 Frontend:
 - Razor Views 
 - Bootstrap 5 
-- HTML & CSS — 
-- JavaScript — 
+- HTML & CSS 
+- JavaScript 
 
 Session Management:
-- ASP.NET Core Session Middleware — 
+- ASP.NET Core Session Middleware 
 
 Version Control:
 - Git 
